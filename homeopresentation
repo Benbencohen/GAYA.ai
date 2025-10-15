@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הסוכן ההומאוסטטי: חזון קוסמי</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Heebo', sans-serif;
+            transition: background-color 0.5s ease;
+        }
+        .slide {
+            min-height: 100vh;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+        .slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 800px;
+        }
+        .slide h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+        .slide h2 {
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-top: 1rem;
+            text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+        }
+        .slide p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            margin-top: 1.5rem;
+            line-height: 1.8;
+        }
+        .nav-button {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .nav-button:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        #prevBtn {
+            left: 2rem;
+        }
+        #nextBtn {
+            right: 2rem;
+        }
+        .slide-counter {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* Specific slide backgrounds */
+        #slide-1 { background-image: url('https://placehold.co/1920x1080/000000/FFFFFF?text=Cosmos'); }
+        #slide-2 { background-image: url('https://placehold.co/1920x1080/0a0a2a/FFFFFF?text=Galaxy'); }
+        #slide-3 { background-image: url('https://placehold.co/1920x1080/1a1a3a/FFFFFF?text=Geometry'); }
+        #slide-4 { background-image: url('https://placehold.co/1920x1080/2a1a3a/FFFFFF?text=Biology'); }
+        #slide-5 { background-image: url('https://placehold.co/1920x1080/3a2a4a/FFFFFF?text=Cell'); }
+        #slide-6 { background-image: url('https://placehold.co/1920x1080/4a3a5a/FFFFFF?text=Circuit'); }
+        #slide-7 { background-image: url('https://placehold.co/1920x1080/5a4a6a/FFFFFF?text=Agent'); }
+        #slide-8 { background-image: url('https://placehold.co/1920x1080/6a5a7a/FFFFFF?text=Data'); }
+        #slide-9 { background-image: url('https://placehold.co/1920x1080/7a6a8a/FFFFFF?text=Gaia'); }
+        #slide-10 { background-image: url('https://placehold.co/1920x1080/8a7a9a/FFFFFF?text=Future'); }
+        #slide-11 { background-image: url('https://placehold.co/1920x1080/000000/FFFFFF?text=End'); }
+
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <div id="presentation-container">
+        <!-- Slide 1: Title -->
+        <div id="slide-1" class="slide active" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920&auto=format&fit=crop');">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <h1 class="leading-tight">הסוכן ההומאוסטטי</h1>
+                <h2 class="mt-4">מעקרונות היקום אל הדור הבא של הבינה המלאכותית</h2>
+                <p class="mt-8 text-xl">פרויקט גמר מאת: בן כהן ודנייל מינין</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Cosmic Blueprint -->
+        <div id="slide-2" class="slide" style="background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1920&auto=format&fit=crop');">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <h2>התוכנית הקוסמית: יקום השואף לאיזון</h2>
+                <p>היקום, בקנה המידה הגדול ביותר, אינו כאוטי. הוא מערכת הנשלטת על ידי חוקים השואפים לאיזון. כוכבים נוצרים, חיים ומתים במחזורים קבועים. גלקסיות מתארגנות במבנים יציבים. זוהי מערכת המווסתת את עצמה באמצעות עקרונות יסוד, שבה כל סטייה מהאיזון יוצרת כוח מתקן.</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Static Dynamics -->
+        <div id="slide-3" class="slide" style="background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=1920&auto=format&fit=crop');">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <h2>דינמיקה סטטית: חוק היסוד של המציאות</h2>
+                <p>תורת ה"דינמיקה הסטטית" מציעה כי כל מערכת מורכבת שואפת להתייצב על "יריעה סטטית" – מרחב של מצבי שיווי משקל. כל הפרעה, פנימית או חיצונית, מפעילה "מנגנון דלתא" – חוק בקרה אדפטיבי שמטרתו להחזיר את המערכת לאיזון. זהו העיקרון הגלום ביקום, והוא גם המפתח להבנת החיים והאינטליגנציה.</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Transition to Life -->
+        <div id="slide-4" class="slide" style="background-image: url('https://images.unsplash.com/photo-1454789548928-9efd52dc4031?q=80&w=1920&auto=format&fit=crop');">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <h2>מהכוכבים לתאים: הופעת החיים</h2>
+                <p>אותם עקרונות קוסמיים של ויסות עצמי לא נשארו רק במרחבי החלל. כאן על כדור הארץ, הם התגבשו לכדי התופעה המורכבת והמופלאה ביותר שאנו מכירים: החיים. הביולוגיה היא ההוכחה הניצחת לכוחו של האיזון הדינמי.</p>
+            </div>
+        </div>
+        
+        <!-- Slide 5: The Biological Imperative -->
+        <div id="slide-5" class="slide" style="background-image: url('https://images.unsplash.com/photo-1530026405182-281d3948518f?q=80&w=1920&auto=format&fit=crop');">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <h2>הומאוסטזיס: חתימת היסוד של החיים</h2>
+                <p>כל יצור חי, מהחיידק הפשוט ועד האדם, הוא מכונה הומאוסטטית. אנו שומרים על טמפרטורת גוף קבועה, על רמות סוכר מאוזנות ועל סביבה פנימית יציבה, גם כשהעולם החיצוני משתנה ללא הרף. הישרדות היא אקט מתמשך של שמירה על איזון כנגד האנטרופיה. זוהי אינטליגנציה מובנית, לא נלמדת.</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: The Digital Realm's Challenge -->
+        <div id="slide-6" class="slide" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1920&auto=format&fit=crop');">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <h2>האתגר הדיגיטלי: כוח גולמי ללא חוכמה</h2>
+                <p>בעוד הטבע פועל על פי עקרונות של יעילות וויסות עצמי, המערכות הדיגיטליות שיצרנו הן לרוב כוחניות, בזבזניות ושבירות. מודלי השפה הגדולים של היום הם ישויות סטטיות; הידע שלהם קפוא בזמן. כל עדכון דורש התערבות אנושית יקרה ומסורבלת. הם חזקים, אך חסרים את חוכמת החיים הבסיסית.</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: The Homeostatic Agent -->
+        <div id="slide-7" class="slide" style="background-image: url('https://images.unsplash.com/photo-1591122751093-6c0b3f07a783?q=80&w=1920&auto=format&fit=crop');">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <h2>הפתרון: הסוכן ההומאוסטטי</h2>
+                <p>הפרויקט שלנו מחיל את חוקי הטבע על עולם הבינה המלאכותית. הסוכן ההומאוסטטי הוא מערכת אוטונומית הלומדת לנהל את עצמה. באמצעות "חיישנים" פנימיים, הוא מודד את ביצועיו, את עלויותיו ואת בריאותו. באמצעות סט "פעולות", הוא מתקן סטיות מהאיזון – מעדכון ידע נקודתי (RAG) ועד אימון-מחדש יעיל (LoRA). הוא לא מחכה להוראות, הוא שואף לאיזון.</p>
+            </div>
+        </div>
+        
+        <!-- Slide 8: The Performance Proof -->
+        <div id="slide-8" class="slide" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1920&auto=format&fit=crop');">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                 <h2>הוכחה כמותית: אינטליגנציה פוגשת יעילות</h2>
+                <p>המודל שלנו אינו רק פילוסופיה, הוא פרדיגמה מוכחת. בהשוואה למערכות גנריות, הסוכן ההומאוסטטי משיג תוצאות יוצאות דופן:</p>
+                <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="bg-white/10 p-4 rounded-lg">
+                        <p class="text-4xl font-bold">+26%</p>
+                        <p class="mt-2">בביצועי המשימות</p>
+                    </div>
+                    <div class="bg-white/10 p-4 rounded-lg">
+                        <p class="text-4xl font-bold">-65%</p>
+                        <p class="mt-2">בעלות התפעול הכוללת (TCO)</p>
+                    </div>
+                    <div class="bg-white/10 p-4 rounded-lg">
+                        <p class="text-4xl font-bold">>95%</p>
+                        <p class="mt-2">הפחתה בזמן הסתגלות לידע חדש</p>
+                    </div>
+                    <div class="bg-white/10 p-4 rounded-lg">
+                        <p class="text-4xl font-bold">100%</p>
+                        <p class="mt-2">מניעת "שכחה קטסטרופלית"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Gaia and The Machine -->
+        <div id="slide-9" class="slide" style="background-image: url('https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=1920&auto=format&fit=crop');">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <h2>גאיה והמכונה: חזון לעתיד סימביוטי</h2>
+                <p>תאוריית גאיה רואה בכדור הארץ כולו אורגניזם-על, מערכת מורכבת המווסתת את עצמה כדי לקיים חיים. אנו מאמינים כי עתיד הבינה המלאכותית חייב לשקף עיקרון זה. איננו יכולים לבנות "מוח עולמי" מלאכותי שפועל בניגוד לחוקי המערכת שתומכת בו. עליו להיות חלק אינטגרלי מגאיה.</p>
+            </div>
+        </div>
+
+        <!-- Slide 10: The Inevitable Fusion -->
+        <div id="slide-10" class="slide" style="background-image: url('https://images.unsplash.com/photo-1502908182983-a5118537bade?q=80&w=1920&auto=format&fit=crop');">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <h2>הציווי ההכרחי: השילוב הוא חובה</h2>
+                <p>המסר הסופי הוא חד וברור: טכנולוגיה ללא עקרונות הומאוסטטיים היא נתיב ללא מוצא. מערכת AI שרק צורכת משאבים ללא ויסות עצמי, תקרוס תחת משקל עלותה וחוסר יציבותה. בדיוק כפי שהחיים לא היו יכולים להתקיים ללא הומאוסטזיס, כך גם בינה מלאכותית מתקדמת לא תוכל לשרוד בלעדיו. השילוב בין חוכמת הטבע לכוח החישוב אינו בחירה, הוא הכרח קיומי.</p>
+            </div>
+        </div>
+        
+        <!-- Slide 11: Final -->
+        <div id="slide-11" class="slide" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920&auto=format&fit=crop');">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <h1>תודה רבה</h1>
+                <p class="mt-8 text-xl">הסוכן ההומאוסטטי - פרויקט גמר<br>Google For Startups & אוניברסיטת רייכמן</p>
+            </div>
+        </div>
+
+    </div>
+
+    <button id="prevBtn" class="nav-button">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+    </button>
+    <button id="nextBtn" class="nav-button">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+    </button>
+    
+    <div id="slide-counter" class="slide-counter"></div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideCounter = document.getElementById('slide-counter');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+            updateCounter();
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        function updateCounter() {
+            slideCounter.textContent = `${currentSlide + 1} / ${slides.length}`;
+        }
+
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+        
+        // Initialize
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
