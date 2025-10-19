@@ -1,0 +1,55 @@
+/* 1. ה-div העוטף (ה"במה" שלנו) חייב להיות 'relative'
+   זה מגדיר את גבולות הפעולה עבור הוידאו.
+*/
+.slide {
+  position: relative;
+  width: 100%;
+  
+  /* חשוב לתת לו גובה, אחרת הוא יהיה בגובה הטקסט בלבד
+     דוגמה לגובה מסך מלא: 
+  */
+  height: 100vh;
+  
+  /* מונע מהוידאו לגלוש החוצה */
+  overflow: hidden;
+}
+
+/* 2. זה הוידאו עצמו. 
+   הופכים אותו ל"רוח רפאים" שתמיד נצמדת לפינות
+*/
+.video-background {
+  position: absolute; /* מוציא אותו מהזרימה הרגילה */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* מכסה את כל השטח (כמו background-size: cover) */
+  
+  /* !!! זה החלק הכי חשוב !!! 
+     שולח את הוידאו שכבה אחת אחורה
+  */
+  z-index: -1;
+}
+
+/* 3. התוכן וה-overlay
+   אנו מוודאים שהם 'relative' כדי שנוכל לשלוט בסדר השכבות
+*/
+.slide-overlay,
+.slide-content {
+  position: relative; /* חשוב כדי ש-z-index יעבוד עליהם */
+  
+  /* קובע שהם יהיו בשכבה 1 (מעל הוידאו שהוא במינוס 1) */
+  z-index: 1;
+}
+
+/* אפשר להוסיף כאן גם קוד למרכוז התוכן אם רוצים */
+.slide-content {
+  /* דוגמה למרכוז אנכי ואופקי */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* ממלא את כל גובה ה-slide */
+  text-align: center;
+  color: white; /* ודא שאפשר לראות את הטקסט על הוידאו */
+}

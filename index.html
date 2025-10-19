@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>הסוכן ההומאוסטטי: חזון קוסמי</title>
+    <title>The Homeostatic Agent: Project Presentation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <style>
         body {
             font-family: 'Heebo', sans-serif;
-            transition: background-color 0.5s ease;
         }
         .slide {
             min-height: 100vh;
@@ -26,6 +26,8 @@
             background-size: cover;
             background-position: center;
             position: relative;
+            /* חשוב כדי שהתמונה לא תגרום לפסי גלילה */
+            overflow: hidden; 
         }
         .slide.active {
             display: flex;
@@ -33,58 +35,65 @@
         }
         .slide-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.6);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.65);
             z-index: 1;
         }
         .slide-content {
             position: relative;
             z-index: 2;
             color: white;
-            max-width: 800px;
+            max-width: 900px;
         }
         .slide h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
+            font-size: 4rem;
+            font-weight: 900;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
         }
         .slide h2 {
-            font-size: 2.5rem;
+            font-size: 2.25rem;
             font-weight: 400;
             margin-top: 1rem;
             text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+            line-height: 1.4;
         }
-        .slide p {
-            font-size: 1.25rem;
+        .slide h3 {
+             font-size: 1.75rem;
+             font-weight: 700;
+             color: #60a5fa; /* A nice blue for titles */
+             text-transform: uppercase;
+             letter-spacing: 2px;
+        }
+        .slide p, .slide li {
+            font-size: 1.5rem; /* Large font size 24px */
             font-weight: 300;
             margin-top: 1.5rem;
-            line-height: 1.8;
+            line-height: 1.7;
+        }
+         .slide ul {
+            list-style-position: inside;
+            text-align: left;
+            display: inline-block;
+            margin-top: 1.5rem;
         }
         .nav-button {
             position: fixed;
             top: 50%;
             transform: translateY(-50%);
             z-index: 10;
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.15);
             color: white;
-            border: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 1rem;
             border-radius: 50%;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
         .nav-button:hover {
-            background-color: rgba(255, 255, 255, 0.4);
+            background-color: rgba(255, 255, 255, 0.3);
         }
-        #prevBtn {
-            left: 2rem;
-        }
-        #nextBtn {
-            right: 2rem;
-        }
+        #prevBtn { left: 2rem; }
+        #nextBtn { right: 2rem; }
         .slide-counter {
             position: fixed;
             bottom: 2rem;
@@ -97,198 +106,327 @@
             border-radius: 20px;
             font-size: 0.9rem;
         }
-        
-        /* Specific slide backgrounds */
-        #slide-1 { background-image: url('https://placehold.co/1920x1080/000000/FFFFFF?text=Cosmos'); }
-        #slide-2 { background-image: url('https://placehold.co/1920x1080/0a0a2a/FFFFFF?text=Galaxy'); }
-        #slide-3 { background-image: url('https://placehold.co/1920x1080/1a1a3a/FFFFFF?text=Geometry'); }
-        #slide-4 { background-image: url('https://placehold.co/1920x1080/2a1a3a/FFFFFF?text=Biology'); }
-        #slide-5 { background-image: url('https://placehold.co/1920x1080/3a2a4a/FFFFFF?text=Cell'); }
-        #slide-6 { background-image: url('https://placehold.co/1920x1080/4a3a5a/FFFFFF?text=Circuit'); }
-        #slide-7 { background-image: url('https://placehold.co/1920x1080/5a4a6a/FFFFFF?text=Agent'); }
-        #slide-8 { background-image: url('https://placehold.co/1920x1080/6a5a7a/FFFFFF?text=Data'); }
-        #slide-9 { background-image: url('https://placehold.co/1920x1080/7a6a8a/FFFFFF?text=Gaia'); }
-        #slide-10 { background-image: url('https://placehold.co/1920x1080/8a7a9a/FFFFFF?text=Future'); }
-        #slide-11 { background-image: url('https://placehold.co/1920x1080/000000/FFFFFF?text=End'); }
 
     </style>
 </head>
 <body class="bg-gray-900 text-white">
 
     <div id="presentation-container">
-        <!-- Slide 1: Title -->
-        <div id="slide-1" class="slide active" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920&auto=format&fit=crop');">
+
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920&auto-format&fit=crop');">
             <div class="slide-overlay"></div>
             <div class="slide-content">
-                <h1 class="leading-tight">הסוכן ההומאוסטטי</h1>
-                <h2 class="mt-4">מעקרונות היקום אל הדור הבא של הבינה המלאכותית</h2>
-                <p class="mt-8 text-xl">פרויקט גמר מאת: בן כהן ודנייל מינין</p>
+                <h1>The Homeostatic Agent</h1>
+                <video width="600" autoplay loop muted style="margin-top: 20px; display: block; margin-left: auto; margin-right: auto; border-radius: 100px;">
+                    <source src="יצירת_סרטון_הומאוסטזיס_קוסמי.mp4" type="video/mp4">
+                    הדפדפן שלך אינו תומך בהצגת סרטונים.
+                </video>
+                <h2 class="mt-6">Autonomous LLM Operations for Peak Performance and Efficiency</h2>
             </div>
         </div>
 
-        <!-- Slide 2: The Cosmic Blueprint -->
-        <div id="slide-2" class="slide" style="background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1920&auto=format&fit=crop');">
+        <div class="slide">
+        
+            <video autoplay  muted playsinline class="video-background">
+              <source src="ASMR_Video_Generation.mp4" type="video/mp4">
+              הדפדפן שלך אינו תומך בהצגת וידאו.
+            </video>
+        
             <div class="slide-overlay"></div>
             <div class="slide-content">
-                <h2>התוכנית הקוסמית: יקום השואף לאיזון</h2>
-                <p>היקום, בקנה המידה הגדול ביותר, אינו כאוטי. הוא מערכת הנשלטת על ידי חוקים השואפים לאיזון. כוכבים נוצרים, חיים ומתים במחזורים קבועים. גלקסיות מתארגנות במבנים יציבים. זוהי מערכת המווסתת את עצמה באמצעות עקרונות יסוד, שבה כל סטייה מהאיזון יוצרת כוח מתקן.</p>
+                <h3>The Core Idea</h3>
+                <h2>Nature's Blueprint: Self-Regulation</h2>
+                <p>From the cosmos to biology, all complex systems thrive by maintaining balance. This is Homeostasis. We applied this fundamental principle to AI.</p>
             </div>
+        
         </div>
 
-        <!-- Slide 3: Static Dynamics -->
-        <div id="slide-3" class="slide" style="background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=1920&auto=format&fit=crop');">
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1920&auto=format&fit=crop');">
             <div class="slide-overlay"></div>
             <div class="slide-content">
-                <h2>דינמיקה סטטית: חוק היסוד של המציאות</h2>
-                <p>תורת ה"דינמיקה הסטטית" מציעה כי כל מערכת מורכבת שואפת להתייצב על "יריעה סטטית" – מרחב של מצבי שיווי משקל. כל הפרעה, פנימית או חיצונית, מפעילה "מנגנון דלתא" – חוק בקרה אדפטיבי שמטרתו להחזיר את המערכת לאיזון. זהו העיקרון הגלום ביקום, והוא גם המפתח להבנת החיים והאינטליגנציה.</p>
-            </div>
-        </div>
-
-        <!-- Slide 4: Transition to Life -->
-        <div id="slide-4" class="slide" style="background-image: url('https://images.unsplash.com/photo-1454789548928-9efd52dc4031?q=80&w=1920&auto=format&fit=crop');">
-            <div class="slide-overlay"></div>
-            <div class="slide-content">
-                <h2>מהכוכבים לתאים: הופעת החיים</h2>
-                <p>אותם עקרונות קוסמיים של ויסות עצמי לא נשארו רק במרחבי החלל. כאן על כדור הארץ, הם התגבשו לכדי התופעה המורכבת והמופלאה ביותר שאנו מכירים: החיים. הביולוגיה היא ההוכחה הניצחת לכוחו של האיזון הדינמי.</p>
+                <h3>The Problem</h3>
+                <h2>LLMs are Static, Expensive & Quickly Become Obsolete</h2>
             </div>
         </div>
         
-        <!-- Slide 5: The Biological Imperative -->
-        <div id="slide-5" class="slide" style="background-image: url('https://images.unsplash.com/photo-1530026405182-281d3948518f?q=80&w=1920&auto=format&fit=crop');">
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1591122751093-6c0b3f07a783?q=80&w=1920&auto=format&fit=crop');">
             <div class="slide-overlay"></div>
             <div class="slide-content">
-                <h2>הומאוסטזיס: חתימת היסוד של החיים</h2>
-                <p>כל יצור חי, מהחיידק הפשוט ועד האדם, הוא מכונה הומאוסטטית. אנו שומרים על טמפרטורת גוף קבועה, על רמות סוכר מאוזנות ועל סביבה פנימית יציבה, גם כשהעולם החיצוני משתנה ללא הרף. הישרדות היא אקט מתמשך של שמירה על איזון כנגד האנטרופיה. זוהי אינטליגנציה מובנית, לא נלמדת.</p>
+                <h3>The Solution</h3>
+                <h2>An Autonomous Agent that Manages the LLM's Lifecycle</h2>
             </div>
         </div>
 
-        <!-- Slide 6: The Digital Realm's Challenge -->
-        <div id="slide-6" class="slide" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1920&auto=format&fit=crop');">
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=1920&auto=format&fit=crop');">
             <div class="slide-overlay"></div>
             <div class="slide-content">
-                <h2>האתגר הדיגיטלי: כוח גולמי ללא חוכמה</h2>
-                <p>בעוד הטבע פועל על פי עקרונות של יעילות וויסות עצמי, המערכות הדיגיטליות שיצרנו הן לרוב כוחניות, בזבזניות ושבירות. מודלי השפה הגדולים של היום הם ישויות סטטיות; הידע שלהם קפוא בזמן. כל עדכון דורש התערבות אנושית יקרה ומסורבלת. הם חזקים, אך חסרים את חוכמת החיים הבסיסית.</p>
+                <h3>Architecture</h3>
+                <h2>A Closed-Loop System: Sense → Decide → Act</h2>
+                <div class="mt-8 p-8 bg-black/30 rounded-lg border border-white/20 inline-block">
+                    <p class="text-4xl font-bold tracking-widest">SENSORS → RL AGENT → ACTIONS</p>
+                </div>
             </div>
         </div>
 
-        <!-- Slide 7: The Homeostatic Agent -->
-        <div id="slide-7" class="slide" style="background-image: url('https://images.unsplash.com/photo-1591122751093-6c0b3f07a783?q=80&w=1920&auto=format&fit=crop');">
-            <div class="slide-overlay"></div>
+        <div class="slide" style="background-image: url('A.png');">
+            <div class="slide-overlay" style="background-color: rgba(8, 21, 21, 0.867);"></div>
             <div class="slide-content">
-                <h2>הפתרון: הסוכן ההומאוסטטי</h2>
-                <p>הפרויקט שלנו מחיל את חוקי הטבע על עולם הבינה המלאכותית. הסוכן ההומאוסטטי הוא מערכת אוטונומית הלומדת לנהל את עצמה. באמצעות "חיישנים" פנימיים, הוא מודד את ביצועיו, את עלויותיו ואת בריאותו. באמצעות סט "פעולות", הוא מתקן סטיות מהאיזון – מעדכון ידע נקודתי (RAG) ועד אימון-מחדש יעיל (LoRA). הוא לא מחכה להוראות, הוא שואף לאיזון.</p>
-            </div>
-        </div>
-        
-        <!-- Slide 8: The Performance Proof -->
-        <div id="slide-8" class="slide" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1920&auto=format&fit=crop');">
-            <div class="slide-overlay"></div>
-            <div class="slide-content">
-                 <h2>הוכחה כמותית: אינטליגנציה פוגשת יעילות</h2>
-                <p>המודל שלנו אינו רק פילוסופיה, הוא פרדיגמה מוכחת. בהשוואה למערכות גנריות, הסוכן ההומאוסטטי משיג תוצאות יוצאות דופן:</p>
-                <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                    <div class="bg-white/10 p-4 rounded-lg">
-                        <p class="text-4xl font-bold">+26%</p>
-                        <p class="mt-2">בביצועי המשימות</p>
+                <h3>Evaluation & Impact</h3>
+                <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <p class="text-6xl font-bold text-blue-400">+26%</p>
+                        <p class="mt-2 text-2xl">Performance</p>
                     </div>
-                    <div class="bg-white/10 p-4 rounded-lg">
-                        <p class="text-4xl font-bold">-65%</p>
-                        <p class="mt-2">בעלות התפעול הכוללת (TCO)</p>
+                    <div>
+                        <p class="text-6xl font-bold text-green-400">-65%</p>
+                        <p class="mt-2 text-2xl">Total Cost (TCO)</p>
                     </div>
-                    <div class="bg-white/10 p-4 rounded-lg">
-                        <p class="text-4xl font-bold">>95%</p>
-                        <p class="mt-2">הפחתה בזמן הסתגלות לידע חדש</p>
+                    <div>
+                        <p class="text-6xl font-bold text-purple-400">>95%</p>
+                        <p class="mt-2 text-2xl">Faster Adaptation</p>
                     </div>
-                    <div class="bg-white/10 p-4 rounded-lg">
-                        <p class="text-4xl font-bold">100%</p>
-                        <p class="mt-2">מניעת "שכחה קטסטרופלית"</p>
+                    <div>
+                        <p class="text-6xl font-bold text-red-400">100%</p>
+                        <p class="mt-2 text-2xl">Forgetting Prevention</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 9: Gaia and The Machine -->
-        <div id="slide-9" class="slide" style="background-image: url('https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=1920&auto=format&fit=crop');">
-            <div class="slide-overlay"></div>
-            <div class="slide-content">
-                <h2>גאיה והמכונה: חזון לעתיד סימביוטי</h2>
-                <p>תאוריית גאיה רואה בכדור הארץ כולו אורגניזם-על, מערכת מורכבת המווסתת את עצמה כדי לקיים חיים. אנו מאמינים כי עתיד הבינה המלאכותית חייב לשקף עיקרון זה. איננו יכולים לבנות "מוח עולמי" מלאכותי שפועל בניגוד לחוקי המערכת שתומכת בו. עליו להיות חלק אינטגרלי מגאיה.</p>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1484417894907-623942c8ee29?q=80&w=1920&auto-format&fit=crop');">
+             <div class="slide-overlay"></div>
+             <div class="slide-content">
+                <h3>Demo</h3>
+                <div class="mt-8 p-4 bg-black/50 rounded-lg border border-white/20 inline-block shadow-2xl">
+                     <img src="__results___0_1977.png" alt="Dashboard Screenshot" class="mx-auto rounded"/>
+                </div>
             </div>
         </div>
 
-        <!-- Slide 10: The Inevitable Fusion -->
-        <div id="slide-10" class="slide" style="background-image: url('https://images.unsplash.com/photo-1502908182983-a5118537bade?q=80&w=1920&auto=format&fit=crop');">
-            <div class="slide-overlay"></div>
-            <div class="slide-content">
-                <h2>הציווי ההכרחי: השילוב הוא חובה</h2>
-                <p>המסר הסופי הוא חד וברור: טכנולוגיה ללא עקרונות הומאוסטטיים היא נתיב ללא מוצא. מערכת AI שרק צורכת משאבים ללא ויסות עצמי, תקרוס תחת משקל עלותה וחוסר יציבותה. בדיוק כפי שהחיים לא היו יכולים להתקיים ללא הומאוסטזיס, כך גם בינה מלאכותית מתקדמת לא תוכל לשרוד בלעדיו. השילוב בין חוכמת הטבע לכוח החישוב אינו בחירה, הוא הכרח קיומי.</p>
-            </div>
-        </div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=1920&auto=format&fit=crop');">
+                     <div class="slide-overlay"></div>
+                     <div class="slide-content">
+                        <h3>Next Steps</h3>
+
+                        <div class="flex flex-row items-center justify-center mt-8">
+                            
+                            <img src="WALL-E_(character).png" alt="WALL-E" style="width: 250px; margin-left: 1.5rem;">
+                            
+                            <video width="600" autoplay loop muted style="border-radius: 100px; display: block;">
+                                <source src="Forest_Animation_Video_Generated.mp4" type="video/mp4">
+                                הדפדפן שלך אינו תומך בהצגת סרטונים.
+                            </video>
+
+                            <img src="eve.webp" alt="EVE" style="width: 350px; margin-right: 1.5rem;">
+                        
+                        </div>
+
+                        <ul class="text-1Xl mt-8">
+                            <li>Expand Action Toolkit, Advance RL Policy, Launch Pilot Program</li>
+                        </ul>
+
+                    </div>
+                </div>
         
-        <!-- Slide 11: Final -->
-        <div id="slide-11" class="slide" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920&auto=format&fit=crop');">
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920&auto-format&fit=crop');">
             <div class="slide-overlay"></div>
+
+            <img src="BBB.png" alt="animated hero" id="animatedHero" style="position: absolute; z-index: 3; width: 250px; height: auto; opacity: 0; will-change: transform; transition: opacity 0.5s;">
+
             <div class="slide-content">
-                <h1>תודה רבה</h1>
-                <p class="mt-8 text-xl">הסוכן ההומאוסטטי - פרויקט גמר<br>Google For Startups & אוניברסיטת רייכמן</p>
+                 <h1>Thank You</h1>
+                 <h2 class="mt-4">Questions?</h2>
+                 <p class="mt-8 text-2xl">Ben Cohen & Daniil Minin</p>
             </div>
         </div>
 
     </div>
 
     <button id="prevBtn" class="nav-button">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
     </button>
     <button id="nextBtn" class="nav-button">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
     </button>
     
     <div id="slide-counter" class="slide-counter"></div>
 
     <script>
+        // --- סקריפט 1: לוגיקת מצגת בסיסית (ללא שינוי) ---
         const slides = document.querySelectorAll('.slide');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const slideCounter = document.getElementById('slide-counter');
         let currentSlide = 0;
 
         function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                if (i === index) {
-                    slide.classList.add('active');
-                }
-            });
-            updateCounter();
+            slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+            document.getElementById('slide-counter').textContent = `${index + 1} / ${slides.length}`;
         }
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
+        function next() { currentSlide = (currentSlide + 1) % slides.length; showSlide(currentSlide); }
+        function prev() { currentSlide = (currentSlide - 1 + slides.length) % slides.length; showSlide(currentSlide); }
 
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
-        }
-        
-        function updateCounter() {
-            slideCounter.textContent = `${currentSlide + 1} / ${slides.length}`;
-        }
-
-        nextBtn.addEventListener('click', nextSlide);
-        prevBtn.addEventListener('click', prevSlide);
-
+        document.getElementById('nextBtn').addEventListener('click', next);
+        document.getElementById('prevBtn').addEventListener('click', prev);
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') {
-                nextSlide();
-            } else if (e.key === 'ArrowLeft') {
-                prevSlide();
-            }
+            if (e.key === 'ArrowRight' || e.key === ' ') next();
+            else if (e.key === 'ArrowLeft') prev();
         });
         
-        // Initialize
         showSlide(currentSlide);
+    </script>
+
+<script>
+        // --- 1. שמירת הפונקציה המקורית ---
+        const originalShowSlide = showSlide; //
+
+        // --- 2. לוגיקת אנימציה ---
+        let animationFrameId = null; 
+        let directionIntervalId = null; // לטיימר של ה-7 שניות
+        
+        const hero = document.getElementById('animatedHero'); //
+        const stage = hero ? hero.closest('.slide') : null; //
+        
+        let speed = 4;
+        let angle = Math.random() * 2 * Math.PI;
+        
+        let heroVel = { 
+            x: Math.cos(angle) * speed,
+            y: Math.sin(angle) * speed
+        };
+        
+        let heroPos = { x: 50, y: 50 }; 
+
+        // פונקציה לשינוי כיוון (כל 7 שניות)
+        function changeHeroDirection() {
+            if (!animationFrameId) return; 
+            let newAngle = Math.random() * 2 * Math.PI;
+            heroVel.x = Math.cos(newAngle) * speed;
+            heroVel.y = Math.sin(newAngle) * speed;
+        }
+
+        // --- זה החלק שהשתנה חזרה ---
+        // פונקציית תזוזה עם "גלישה" (לעבור דרך קירות)
+        function moveHeroWrapping() { 
+            if (!hero || !stage) return; 
+
+            const imgWidth = hero.width;
+            const imgHeight = hero.height;
+            const stageWidth = stage.clientWidth;
+            const stageHeight = stage.clientHeight;
+
+            // בדיקת בטיחות
+            if (imgWidth === 0 || imgHeight === 0) {
+                hero.style.transform = `translate(${heroPos.x}px, ${heroPos.y}px)`; 
+                animationFrameId = requestAnimationFrame(moveHeroWrapping); // קורא לעצמו
+                return; 
+            }
+
+            // 1. עדכון מיקום
+            heroPos.x += heroVel.x;
+            heroPos.y += heroVel.y;
+
+            // 2. לוגיקת גלישה (Wrapping) מבוססת "במה" - "לעבור בין קירות"
+            // יצא מימין? חזור משמאל.
+            if (heroPos.x > stageWidth) {
+                heroPos.x = -imgWidth; 
+            }
+            // יצא משמאל? חזור מימין.
+            if (heroPos.x + imgWidth < 0) {
+                heroPos.x = stageWidth; 
+            }
+            // יצא מלמטה? חזור מלמעלה.
+            if (heroPos.y > stageHeight) {
+                heroPos.y = -imgHeight; 
+            }
+            // יצא מלמעלה? חזור מלמטה.
+            if (heroPos.y + imgHeight < 0) {
+                heroPos.y = stageHeight; 
+            }
+            
+            // 3. החלת השינוי
+            hero.style.transform = `translate(${heroPos.x}px, ${heroPos.y}px)`;
+            
+            // 4. בקשת הפריים הבא
+            animationFrameId = requestAnimationFrame(moveHeroWrapping); // קורא לעצמו
+        }
+        // --- סוף החלק שהשתנה ---
+
+
+        function startHero() {
+            if (!animationFrameId && hero && stage) {
+                
+                hero.style.top = '0px';
+                hero.style.left = '0px';
+                
+                heroPos = { 
+                    x: (stage.clientWidth - hero.width) / 2, 
+                    y: (stage.clientHeight - hero.height) / 2 
+                };
+                
+                angle = Math.random() * 2 * Math.PI;
+                heroVel = { x: Math.cos(angle) * speed, y: Math.sin(angle) * speed };
+                
+                hero.style.opacity = '0.9'; //
+                
+                // --- שינוי ---
+                // הפעל את האנימציה עם לוגיקת הגלישה
+                moveHeroWrapping(); 
+                
+                // נקה אינטרוול קודם אם קיים
+                if (directionIntervalId) {
+                    clearInterval(directionIntervalId);
+                }
+                // התחל את האינטרוול של 7 השניות
+                directionIntervalId = setInterval(changeHeroDirection, 7000); //
+            }
+        }
+
+        function stopHero() {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+            // עצור גם את האינטרוול
+            if (directionIntervalId) {
+                clearInterval(directionIntervalId);
+                directionIntervalId = null;
+            }
+            
+            if (hero) {
+                hero.style.opacity = '0'; //
+            }
+        }
+        
+        // 3. הגדרה מחדש של 'showSlide' (ללא שינוי)
+        showSlide = function(index) {
+            originalShowSlide(index);
+
+            // לוגיקת וידאו
+            slides.forEach((slide, i) => {
+                const isActive = (i === index);
+                const video = slide.querySelector('video');
+                
+                if (video) {
+                    if (isActive) {
+                        video.currentTime = 0;
+                        video.play().catch(e => console.warn("Video play failed", e));
+                    } else {
+                        video.pause();
+                    }
+                }
+            });
+
+            // לוגיקת אנימציה
+            const isLastSlide = (index === slides.length - 1);
+            
+            if (isLastSlide) {
+                startHero(); 
+            } else {
+                stopHero(); 
+            }
+        }
+        
+        // הפעלה ראשונית
+        showSlide(currentSlide); 
     </script>
 </body>
 </html>
